@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.swing.border.Border;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.plaf.SliderUI;
@@ -44,7 +45,7 @@ public class Board {
 
         JFrame jFrame=new JFrame("Płytka ewaluacyjna");
         jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        jFrame.setSize(1000,700);
+        jFrame.setSize(800,500);
         jFrame.setLayout(new GridLayout(3,2));
         jFrame.setBackground(Color.RED);
 
@@ -88,6 +89,15 @@ public class Board {
         led6.setPreferredSize(new Dimension(20,20));
         led7.setPreferredSize(new Dimension(20,20));
 
+        led0.setBorder(BorderFactory.createLineBorder(Color.black));
+        led1.setBorder(BorderFactory.createLineBorder(Color.black));
+        led2.setBorder(BorderFactory.createLineBorder(Color.black));
+        led3.setBorder(BorderFactory.createLineBorder(Color.black));
+        led4.setBorder(BorderFactory.createLineBorder(Color.black));
+        led5.setBorder(BorderFactory.createLineBorder(Color.black));
+        led6.setBorder(BorderFactory.createLineBorder(Color.black));
+        led7.setBorder(BorderFactory.createLineBorder(Color.black));
+
         JTextArea ledy=new JTextArea("LED");
         ledy.setBackground(Color.RED);
         leds.add(ledy);
@@ -107,6 +117,7 @@ public class Board {
         rbg_diod=new JPanel();
         rbg_diod.setBackground(Color.WHITE);
         rbg_diod.setPreferredSize(new Dimension(30,30));
+        rbg_diod.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         rgb.setBackground(Color.RED);
         JTextArea rgb_text=new JTextArea("RGB");
         rgb_text.setBackground(Color.RED);
@@ -157,6 +168,8 @@ public class Board {
             public void stateChanged(ChangeEvent e) {
             }
         });
+        potencjometr1.setBorder(BorderFactory.createLineBorder(Color.black));
+        potencjometr2.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         JTextArea pot1=new JTextArea("POT1");
         JTextArea pot2=new JTextArea("POT2");
         pot1.setBackground(Color.RED);
@@ -176,6 +189,24 @@ public class Board {
         s6=new JButton("s6");
         s7=new JButton("s7");
         s8=new JButton("s8");
+        s1.setBorder(BorderFactory.createLineBorder(Color.black));
+        s2.setBorder(BorderFactory.createLineBorder(Color.black));
+        s3.setBorder(BorderFactory.createLineBorder(Color.black));
+        s4.setBorder(BorderFactory.createLineBorder(Color.black));
+        s5.setBorder(BorderFactory.createLineBorder(Color.black));
+        s6.setBorder(BorderFactory.createLineBorder(Color.black));
+        s7.setBorder(BorderFactory.createLineBorder(Color.black));
+        s8.setBorder(BorderFactory.createLineBorder(Color.black));
+
+        s1.setPreferredSize(new Dimension(30,30));
+        s2.setPreferredSize(new Dimension(30,30));
+        s3.setPreferredSize(new Dimension(30,30));
+        s4.setPreferredSize(new Dimension(30,30));
+        s5.setPreferredSize(new Dimension(30,30));
+        s6.setPreferredSize(new Dimension(30,30));
+        s7.setPreferredSize(new Dimension(30,30));
+        s8.setPreferredSize(new Dimension(30,30));
+
         buttons.add(s1);
         buttons.add(s2);
         buttons.add(s3);
@@ -185,6 +216,7 @@ public class Board {
         buttons.add(s7);
         buttons.add(s8);
 
+        jFrame.setResizable(false);
         jFrame.setVisible(true);
     }
     public static void main(String args[]) throws IOException {

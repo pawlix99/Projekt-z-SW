@@ -30,19 +30,48 @@ public class Host{
             Scanner scanner=new Scanner(System.in);
             System.out.println("Ktory element ukladu wybierasz:");
             int i=scanner.nextInt();
-            if(i==1){
+            if(i==1 || i==2){
                 myoutput.print("1\n");
                 //String buffer1;
+                System.out.println("Wybrano projekt nr 1 i 2");
+                String tmpLine = "";
                 System.out.println("Dostalem sie do dzwieku!");
                 while ((userInput = myinput.readLine()) != null) {
                     System.out.println(userInput);
-                    /*
-                     * W TY MIEJSCU NIEZBEDNA JEST OPERACJA NA WARTOSCI USER_INPUT
-                     * POWINNA ONA POSLUZYC DO USTAWIENIU WARTOSCI DZWIEKU NA KOMPUTERZE
-                     *
-                     *
-                     * */
-                    myoutput.print(userInput+"\n");
+                    try 
+                    {
+                        Process p = Runtime.getRuntime().exec(
+                        new String[]{"amixer", "-D", "pulse", "sset", "'Master'", userInput.toString()+"%"});
+                        p.waitFor();
+                    } catch (IOException e) {
+                        throw e;
+                    }
+
+                    
+                    ProcessBuilder builder =
+                        new ProcessBuilder("amixer", "-D", "pulse", "sget", "'Master'");
+                        builder.inheritIO().redirectOutput(ProcessBuilder.Redirect.PIPE);
+                        Process p = builder.start();
+                    
+
+                    
+                    try (BufferedReader buf =
+                    new BufferedReader(new InputStreamReader(p.getInputStream()))) 
+                    {
+                        String line;
+                        while ((line = buf.readLine()) != null) {
+                        if (line.contains("%]")) 
+                        {
+                            tmpLine=line.substring(line.indexOf("[")+1, line.indexOf("%"));
+                            break;
+                        }
+                        }
+                    }
+
+                    p.waitFor();
+                    if(tmpLine=="")
+                        tmpLine="0";
+                    myoutput.print(tmpLine+"\n");
                     Thread.sleep(10);
 
                 }
