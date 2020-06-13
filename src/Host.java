@@ -30,48 +30,19 @@ public class Host{
             Scanner scanner=new Scanner(System.in);
             System.out.println("Ktory element ukladu wybierasz:");
             int i=scanner.nextInt();
-            if(i==1 || i==2){
+            if(i==1){
                 myoutput.print("1\n");
                 //String buffer1;
-                System.out.println("Wybrano projekt nr 1 i 2");
-                String tmpLine = "";
                 System.out.println("Dostalem sie do dzwieku!");
                 while ((userInput = myinput.readLine()) != null) {
                     System.out.println(userInput);
-                    try 
-                    {
-                        Process p = Runtime.getRuntime().exec(
-                        new String[]{"amixer", "-D", "pulse", "sset", "'Master'", userInput.toString()+"%"});
-                        p.waitFor();
-                    } catch (IOException e) {
-                        throw e;
-                    }
-
-                    
-                    ProcessBuilder builder =
-                        new ProcessBuilder("amixer", "-D", "pulse", "sget", "'Master'");
-                        builder.inheritIO().redirectOutput(ProcessBuilder.Redirect.PIPE);
-                        Process p = builder.start();
-                    
-
-                    
-                    try (BufferedReader buf =
-                    new BufferedReader(new InputStreamReader(p.getInputStream()))) 
-                    {
-                        String line;
-                        while ((line = buf.readLine()) != null) {
-                        if (line.contains("%]")) 
-                        {
-                            tmpLine=line.substring(line.indexOf("[")+1, line.indexOf("%"));
-                            break;
-                        }
-                        }
-                    }
-
-                    p.waitFor();
-                    if(tmpLine=="")
-                        tmpLine="0";
-                    myoutput.print(tmpLine+"\n");
+                    /*
+                     * W TY MIEJSCU NIEZBEDNA JEST OPERACJA NA WARTOSCI USER_INPUT
+                     * POWINNA ONA POSLUZYC DO USTAWIENIU WARTOSCI DZWIEKU NA KOMPUTERZE
+                     *
+                     *
+                     * */
+                    myoutput.print(userInput+"\n");
                     Thread.sleep(10);
 
                 }
@@ -115,36 +86,76 @@ public class Host{
                     buffer1=myinput.readLine();
                     temp=Integer.parseInt(buffer1);
                     if(temp==1){
-                        System.out.println("Akcja klawisza: 1");
-                        myoutput.print(1+"\n");
+                        try{
+                            String url = "http://www.google.com";
+                            Desktop.getDesktop().browse(new URL(url).toURI());
+                        }
+                        catch(Exception E){
+                            System.err.println("Exp : "+E.getMessage());
+                        }
                     }
                     else if(temp==2){
-                        System.out.println("Akcja klawisza: 2");
-                        myoutput.print(2+"\n");
+                        try{
+                            String url = "http://www.elf2.pk.edu.pl";
+                            Desktop.getDesktop().browse(new URL(url).toURI());
+                        }
+                        catch(Exception E){
+                            System.err.println("Exp : "+E.getMessage());
+                        }
                     }
                     else if(temp==3){
-                        System.out.println("Akcja klawisza: 3");
-                        myoutput.print(3+"\n");
+                        try{
+                            String url = "http://www.github.com";
+                            Desktop.getDesktop().browse(new URL(url).toURI());
+                        }
+                        catch(Exception E){
+                            System.err.println("Exp : "+E.getMessage());
+                        }
                     }
                     else if(temp==4){
-                        System.out.println("Akcja klawisza: 4");
-                        myoutput.print(4+"\n");
+                        try{
+                            String url = "http://www.pk.edu.pl";
+                            Desktop.getDesktop().browse(new URL(url).toURI());
+                        }
+                        catch(Exception E){
+                            System.err.println("Exp : "+E.getMessage());
+                        }
                     }
                     else if(temp==5){
-                        System.out.println("Akcja klawisza: 5");
-                        myoutput.print(5+"\n");
+                        try{
+                            String url = "http://www.youtube.com";
+                            Desktop.getDesktop().browse(new URL(url).toURI());
+                        }
+                        catch(Exception E){
+                            System.err.println("Exp : "+E.getMessage());
+                        }
                     }
                     else if(temp==6){
-                        System.out.println("Akcja klawisza: 6");
-                        myoutput.print(6+"\n");
+                        try{
+                            String url = "http://www.nasa.gov";
+                            Desktop.getDesktop().browse(new URL(url).toURI());
+                        }
+                        catch(Exception E){
+                            System.err.println("Exp : "+E.getMessage());
+                        }
                     }
                     else if(temp==7){
-                        System.out.println("Akcja klawisza: 7");
-                        myoutput.print(7+"\n");
+                        try{
+                            String url = "https://and-tech.pl/zestaw-evb-5-1/";
+                            Desktop.getDesktop().browse(new URL(url).toURI());
+                        }
+                        catch(Exception E){
+                            System.err.println("Exp : "+E.getMessage());
+                        }
                     }
                     else if(temp==8){
-                        System.out.println("Akcja klawisza: 8");
-                        myoutput.print(8+"\n");
+                        try{
+                            String url = "https://www.centrumrowerowe.pl/rowery/";
+                            Desktop.getDesktop().browse(new URL(url).toURI());
+                        }
+                        catch(Exception E){
+                            System.err.println("Exp : "+E.getMessage());
+                        }
                     }
                 }
             }else if(i==5){
